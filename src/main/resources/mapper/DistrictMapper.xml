@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hzh.computer_store.mapper.DistrictMapper">
+    <!--select查询的结果:一个对象或多个对象
+        resultType:指定对应映射类的类型,要求完整的包结构,要求表的字段的名和类的属性名一致
+        resultMap:当表的字段和类的对象属性名不一致时,使用自定义查询结果集的映射规则
+        通过<resultmap>标签的id来使用自定义规则
+    -->
+
+    <!--返回一行或多行数据 一行数据对应District对象 所以指定返回数据的类型为District-->
+    <select id="findByParent" resultType="com.hzh.computer_store.entity.District">
+        select * from t_dict_district where parent=#{parent} order by code ASC
+    </select>
+
+    <!--返回的一行name字段的字符串数据 所以指定返回数据的类型为String-->
+    <select id="findNameByCode" resultType="java.lang.String">
+        select name from t_dict_district where code=#{code}
+    </select>
+
+
+</mapper>
